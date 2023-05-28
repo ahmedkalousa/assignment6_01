@@ -33,8 +33,8 @@ class _DicePageState extends State<DicePage> {
 
   @override
   void initState() {
-    int? img_num = Random().nextInt(3) + 1;
-    int? img_num2 = Random().nextInt(3) + 1;
+    int? img_num = 1;
+    int? img_num2 = 1;
     List<Icon> icons = [];
   }
 
@@ -55,7 +55,9 @@ class _DicePageState extends State<DicePage> {
               content: Text('Done.. \n\n Try Again'),
               actions: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text('OK'),
                 ),
               ],
@@ -69,49 +71,43 @@ class _DicePageState extends State<DicePage> {
   Icon getIcon() {
     if (img_num == 1 && img_num2 == 2) {
       return Icon(
-        Icons.thumb_down,
-        color: Colors.red,
+        Icons.thumb_up,
+        color: Colors.green,
         size: 30,
       );
     } else if (img_num == 1 && img_num2 == 3) {
       return Icon(
-        Icons.thumb_up,
-        color: Colors.green,
-        size: 30,
-      );
-    } else if (img_num == img_num2) {
-      return Icon(
-        Icons.favorite,
-        color: Colors.yellow,
+        Icons.thumb_down,
+        color: Colors.red,
         size: 30,
       );
     } else if (img_num == 2 && img_num2 == 1) {
       return Icon(
-        Icons.thumb_up,
-        color: Colors.green,
+        Icons.thumb_down,
+        color: Colors.red,
         size: 30,
       );
     } else if (img_num == 2 && img_num2 == 3) {
       return Icon(
-        Icons.thumb_down,
-        color: Colors.red,
+        Icons.thumb_up,
+        color: Colors.green,
         size: 30,
       );
     } else if (img_num == 3 && img_num2 == 1) {
-      return Icon(
-        Icons.thumb_down,
-        color: Colors.red,
-        size: 30,
-      );
-    } else if (img_num == 3 && img_num2 == 2) {
       return Icon(
         Icons.thumb_up,
         color: Colors.green,
         size: 30,
       );
+    } else if (img_num == 3 && img_num2 == 2) {
+      return Icon(
+        Icons.thumb_down,
+        color: Colors.red,
+        size: 30,
+      );
     } else {
       return Icon(
-        Icons.favorite,
+        Icons.handshake,
         color: Colors.yellow,
         size: 30,
       );
@@ -146,10 +142,11 @@ class _DicePageState extends State<DicePage> {
                   rand();
                 },
                 child: Container(
+                    decoration: BoxDecoration(shape: BoxShape.circle),
                     width: 100,
                     height: 150,
                     child: Image.asset(
-                      "images/game$img_num.png",
+                      "images/game$img_num.jpg",
                       fit: BoxFit.fill,
                     ))),
           )),
@@ -167,11 +164,14 @@ class _DicePageState extends State<DicePage> {
                   rand();
                 },
                 child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      // color: Colors.black,
+                    ),
                     width: 100,
                     height: 150,
-                    color: Colors.black,
                     child: Image.asset(
-                      "images/game$img_num2.png",
+                      "images/game$img_num2.jpg",
                       fit: BoxFit.fill,
                     ))),
           )),
